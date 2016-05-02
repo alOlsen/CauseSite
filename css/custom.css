@@ -1,0 +1,42 @@
+body{
+	background : black;
+	color 	: white;
+}
+
+nav{
+	background: rgba(0,0,0,.5);
+	width 		: 45%;
+	position 	: fixed;
+	top 		: 0px;
+	right 		: 0px;
+	z-index 	: 10;
+}
+
+nav ul{
+	list-style	:none;
+	padding 	: 0px;
+	margin 		: 0px;
+
+}
+
+nav ul li{
+	color 	: white;
+	width 	: 30%;
+	display : inline-block;
+	text-align 	: center;
+	padding-top : 10px;
+	padding-bottom: 10px;
+}
+
+nav ul li:hover{
+	background : rgba(255, 255, 255, .5);
+	color : black;
+}
+
+.volunteerBanner{
+	background: url(https://beautifulthieves.files.wordpress.com/2012/05/motorhead__another_perfect_day_by_wedopix-d3a8m6v.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
