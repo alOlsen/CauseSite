@@ -57,6 +57,7 @@ nav ul li:hover{
 .item{
 	height : 660px;
 	margin-bottom: 100px;
+	background: rgba(0,0,0,.5);
 }
 .item img {
 	width : 100%;
@@ -68,8 +69,20 @@ nav ul li:hover{
 }
 
 .thumbnail{
+	border : 0px;
 	height : 666px;
+	background: rgba(255,255,255,.1);
+	color : red;
 }
+
+.thumbnail .caption h3{
+	color: red;
+}
+
+.thumbnail .caption p{
+	color: white;
+}
+
 
 form{
 	background : rgba(255,255,255,.1);
