@@ -1,6 +1,9 @@
 body{
 	background : black;
 	color 	: white;
+	margin 	: 0px;
+	padding : 0px;
+	font-family: 'Indie Flower', cursive;
 }
 
 nav{
@@ -39,4 +42,41 @@ nav ul li:hover{
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  height : 50vh;
+  border-radius:0px;
+}
+
+.nopadding{
+	padding 	: 0px;
+}
+
+.nomargin{
+	margin 		: 0px;
+}
+
+.item{
+	height : 660px;
+	margin-bottom: 100px;
+}
+.item img {
+	width : 100%;
+	
+}
+
+.carousel{
+	/*height 	: 500px;*/
+}
+
+.thumbnail{
+	height : 666px;
+}
+
+form{
+	background : rgba(255,255,255,.1);
+	padding : 100px;
+	letter-spacing : 15px;
+}
+
+.inputs{
+	width : 250px;
 }
