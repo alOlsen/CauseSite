@@ -1,61 +1,102 @@
 $(document).ready( function(){
-
-	//console.log("validator initiated...");
-
+	var VISA = 16;
+	var DISCOVER = 14;
 	var fn_var;
 	var ln_var;
 	var email_var;
 	var zip_var;
 	var task_var;
+	var state_var;
+	var cc_var;
+	var amount_var;
 
 	var fn_valid 		= false;
 	var ln_valid 		= false;
 	var email_valid 	= false;
 	var zip_valid 		= false;
-	var task_var 		= false;
+	var task_valid 		= false;
+	var state_valid		= false;
+	var cc_valid 		= false;
+	var amount_valid 	= false;
 
+	$("#donBtn").click( function(){
+		console.log( "Donate button is clicked");
+		fn_var 		= $("#fn").val();
+		ln_var 		= $("#ln").val();
+		email_var 	= $("#email").val();
+		state_var 	= $("#state").val();
+		zip_var 	= $("#zip").val();
+		cc_var 		= $("#cc").val();
+		amount_var  = $("#amount").val();
+
+		if( fn_var == "" ){
+			$("#fn").css("border", "solid 1px red");
+		}else{
+			fn_valid = validate( "normalString", fn_var );
+		}
+
+		if( ln_var == "" ){
+			$("#ln").css("border", "solid 1px red");
+		}else{
+			ln_valid = validate( "normalString", ln_var );
+		}
+
+		if( state_var == "" ){
+			$("#state").css("border", "solid 1px red");
+		}else{
+			state_valid = validate( "normalString", state_var );
+		}
+
+		if( zip_var == "" ){
+			$("#zip").css("border", "solid 1px red");
+		}else{
+			zip_valid = validate( "zipCode", zip_var );
+		}
+
+		if( email_var == "" ){
+			$("#email").css("border", "solid 1px red");
+		}else{
+			email_valid = validate( "emailAddress", email_var );
+		}
+
+		if( cc_var == "" ){
+			$("#cc").css("border", "solid 1px red");
+		}else{
+			cc_valid = validate( "creditCard", cc_var );
+		}
+
+		if( amount_var == "" ){
+			$("#amount").css("border", "solid 1px red");
+		}else{
+			amount_valid = validate( "number", amount_var );
+		}
+
+		if( fn_valid && ln_valid && state_valid && zip_valid && email_valid && cc_valid && amount_valid){
+			//$("#donateForm").submit()
+		}else{
+			alert("Please make sure your form is complete");
+		}
+
+	});
 
 	$("#volBtn").click( function(){
 		console.log("----------------------")
-		//console.log("Volunteer button has been clicked");
 		fn_var 		= $("#fn").val();
 		ln_var 		= $("#ln").val();
 		email_var 	= $("#email").val();
 		zip_var 	= $("#zip").val();
 		task_var 	= $("#volunteerTask").val();
 
-
-
-		// console.log( fn_var );
-		// console.log( ln_var );
-		// console.log( email_var );
-		// console.log( zip_var );
-		// console.log( task_var );
-
 		if( fn_var == "" ){
-			//console.log("First Name is required!");
 			$("#fn").css("border", "solid 1px red");
 		}else{
 			fn_valid = validate( "normalString", fn_var );
-			// if( validate( "normalString", fn_var ) ){
-			// 	console.log( "FN passed the test!");
-			// 	fn_valid = true
-			// }else{
-			// 	console.log( "FN failed the test!");
-			// }
 		}
 
 		if( ln_var == "" ){
-			//console.log("Last Name is required!");
 			$("#ln").css("border", "solid 1px red");
 		}else{
-			//console.log("Last Name is valid!");
 			ln_valid = validate( "normalString", ln_var );
-			// if( validate( "normalString", ln_var ) ){
-			// 	console.log( "LN passed the test!");
-			// }else{
-			// 	console.log( "LN failed the test!");
-			// }
 		}
 
 		if( task_var == "" ){
@@ -65,34 +106,20 @@ $(document).ready( function(){
 		}
 
 		if( zip_var == "" ){
-			//console.log("Zip code is required!");
 			$("#zip").css("border", "solid 1px red");
 		}else{
-			//console.log("Zip code is valid!");
 			zip_valid = validate( "zipCode", zip_var );
-			// if( validate( "zipCode", zip_var ) ){
-			// 	console.log( "Zip code passed the test!");
-			// }else{
-			// 	console.log( "Zip code failed the test!");
-			// }
 		}
 
 		if( email_var == "" ){
-			//console.log("Email is required!");
 			$("#email").css("border", "solid 1px red");
 		}else{
-			//console.log("Email is valid!");
 			email_valid = validate( "emailAddress", email_var );
-			// if( validate( "emailAddress", email_var ) ){
-			// 	console.log( "Email passed the test!");
-			// }else{
-			// 	console.log( "Email failed the test!");
-			// }
 		}
 
 		if( fn_valid && ln_valid && email_valid && zip_valid && task_valid ){
 			alert("Form is ready to go to the server!");
-			$("#volForm").submit();
+			//$("#volForm").submit();
 		}else{
 			alert( "Please make sure your form is complete properly!")
 		}
@@ -132,14 +159,35 @@ $(document).ready( function(){
 						}
 					}
 				break;
+			case "creditCard":
+					console.log("Validating CC")
+					userInput = cleanUp( userInput );
+					if( isNaN( userInput ) ){
+						valid = false;
+					}else{
+						if( userInput.length == VISA){
+							valid = true;
+						}else{
+							valid = false;
+						}
+					}
+				break;
+			case "number":
+					userInput = cleanUp( userInput );
+					if( isNaN( userInput ) ){
+						valid = false;
+					}else{
+						valid = true;
+					}
+				break;
 		}
-
 		return valid;
 	}
 
 	function cleanUp( userInput ){
 		console.log("cleanUp() initiated...")
 		var temp = userInput;
+		temp = temp.replace(/-/g, "");
 		temp = temp.replace("<", "&lt;");
 		temp = temp.replace(">", "&gt;");
 		temp = temp.replace("SELECT", "");
